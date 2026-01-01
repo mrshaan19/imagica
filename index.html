@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      </meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </meta>
+    <title>Imagica AI - AI-Powered Image Generation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      </link>
+      <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #6d28d9 0%, #4c1d95 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .loading-dots::after {
+            content: '.';
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60% { content: '...'; }
+            80%, 100% { content: ''; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-10 h-10 rounded-md bg-purple-600 flex items-center justify-center">
+                            <i class="fas fa-magic text-white text-xl"></i>
+                        </div>
+                        <span class="ml-2 text-xl font-bold text-gray-900">Imagica AI</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-6">
+                    <a href="#features" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 transition">Features</a>
+                    <a href="#generator" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 transition">Generator</a>
+                    <a href="#gallery" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 transition">Gallery</a>
+                    <button class="ml-6 px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-800 text-white rounded-md shadow-sm hover:shadow-md transition">Get Started</button>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute top-16 w-full z-40">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-purple-600">Features</a>
+            <a href="#generator" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-purple-600">Generator</a>
+            <a href="#gallery" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-purple-600">Gallery</a>
+            <button class="w-full mt-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-800 text-white rounded-md">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-purple-50 to-gray-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+            <div class="relative z-10">
+                <div class="max-w-xl mx-auto text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 fade-in">
+                        Create Stunning Images <span class="gradient-text">with AI</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 fade-in" style="animation-delay: 0.2s;">
+                        Imagica AI transforms your imagination into breathtaking visuals with just a few words.
+                    </p>
+                    <div class="fade-in" style="animation-delay: 0.4s;">
+                        <a href="#generator" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-800 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                            Try It Now
+                            <i class="fas fa-arrow-right ml-3"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-purple-200 opacity-40"></div>
+            <div class="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-purple-100 opacity-60"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Powerful AI Image Generation</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Unleash your creativity with our cutting-edge AI technology.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Advanced AI Models</h3>
+                    <p class="text-gray-600">Our state-of-the-art AI understands complex prompts to generate high-quality images exactly as you imagine.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-sliders-h text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Customizable Styles</h3>
+                    <p class="text-gray-600">Choose from various artistic styles including photorealistic, anime, 3D render, and more to match your vision.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Lightning Fast</h3>
+                    <p class="text-gray-600">Get your AI-generated images in seconds with our optimized cloud computing infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Generator Section -->
+    <section id="generator" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">AI Image Generator</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Describe what you want to see and let our AI create it for you.</p>
+            </div>
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8">
+                        <div class="mb-6">
+                            <label for="prompt" class="block text-sm font-medium text-gray-700 mb-2">Image Prompt</label>
+                            <textarea id="prompt" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="A majestic lion in the savannah at sunset..."></textarea>
+                        </div>
+                        <div class="mb-6">
+                            <label for="style" class="block text-sm font-medium text-gray-700 mb-2">Art Style</label>
+                            <select id="style" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+                                <option value="realistic">Photorealistic</option>
+                                <option value="anime">Anime</option>
+                                <option value="painting">Oil Painting</option>
+                                <option value="3d">3D Render</option>
+                                <option value="fantasy">Fantasy Art</option>
+                                <option value="cyberpunk">Cyberpunk</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label for="size" class="block text-sm font-medium text-gray-700 mb-2">Image Size</label>
+                            <select id="size" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+                                <option value="square">Square (512x512)</option>
+                                <option value="landscape">Landscape (1024x576)</option>
+                                <option value="portrait">Portrait (576x1024)</option>
+                                <option value="hd">HD (1920x1080)</option>
+                            </select>
+                        </div>
+                        <button id="generate-btn" class="w-full py-3 bg-gradient-to-r from-purple-600 to-purple-800 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition">
+                            Generate Image
+                        </button>
+                    </div>
+                    <div class="md:w-1/2 bg-gray-100 p-8 flex items-center justify-center">
+                        <div id="image-placeholder" class="w-full h-full flex items-center justify-center rounded-lg overflow-hidden bg-white border-2 border-dashed border-gray-300">
+                            <div class="text-center p-4">
+                                <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
+                                <p class="text-gray-500">Your AI-generated image will appear here</p>
+                            </div>
+                        </div>
+                        <div id="loading-animation" class="hidden w-full h-full flex items-center justify-center">
+                            <div class="text-purple-600 text-center">
+                                <i class="fas fa-circle-notch fa-spin text-4xl mb-3"></i>
+                                <p class="text-xl font-medium loading-dots">Generating your image</p>
+                            </div>
+                        </div>
+                        <div id="generated-image-container" class="hidden w-full h-full">
+                            <img id="generated-image" alt="AI generated image" class="w-full h-auto rounded-lg shadow-sm" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/af278657-ae4a-4178-a8e2-b05d490dbf53.png">
+                              </img>
+                            <div class="mt-4 flex justify-between">
+                                <button id="download-btn" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition">
+                                    <i class="fas fa-download mr-2"></i> Download
+                                </button>
+                                <button id="regenerate-btn" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition">
+                                    <i class="fas fa-redo mr-2"></i> Re-generate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Gallery</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Explore images created by our community with Imagica AI.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7419ffa6-c677-4d05-a675-18808d573934.png" alt="Cyberpunk cityscape at night with neon lights reflecting on wet streets and futuristic flying cars" class="w-full h-64 object-cover">
+                      </img>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-2">"Futuristic cyberpunk city at night"</p>
+                        <p class="text-sm text-gray-500">Created by @aigenerator</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/93e48336-64de-476d-b4af-44099058aacb.png" alt="Magical forest with glowing mushrooms and fireflies floating among ancient trees under a starry sky" class="w-full h-64 object-cover">
+                      </img>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-2">"Enchanted glowing forest"</p>
+                        <p class="text-sm text-gray-500">Created by @fantasylover</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ade1c015-8bc4-4169-a225-400ada07079a.png" alt="Portrait of a beautiful elf warrior with long silver hair, armor, and glowing blue eyes in a moonlit forest setting" class="w-full h-64 object-cover">
+                      </img>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-2">"Elf warrior portrait"</p>
+                        <p class="text-sm text-gray-500">Created by @rpgartist</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8d1c64ce-987a-41e9-b31a-18cc94cdcea4.png" alt="Abstract geometric pattern with vibrant colors blending into each other in a smooth gradient" class="w-full h-64 object-cover">
+                      </img>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-2">"Colorful abstract geometry"</p>
+                        <p class="text-sm text-gray-500">Created by @abstractmind</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/261a9f0d-0782-4df7-923a-65c0770f3bf4.png" alt="Cute corgi puppy wearing a red bandana sitting in a field of sunflowers on a sunny day" class="w-full h-64 object-cover">
+                      </img>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-2">"Happy corgi in sunflowers"</p>
+                        <p class="text-sm text-gray-500">Created by @dogenthusiast</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/492206af-751a-4039-82cd-f7bc2151b404.png" alt="Underwater scene with colorful coral reef and tropical fish swimming in clear blue water with sunlight filtering through" class="w-full h-64 object-cover">
+                      </img>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-2">"Vibrant coral reef"</p>
+                        <p class="text-sm text-gray-500">Created by @oceandreamer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <button class="px-6 py-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition">
+                    Load More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-purple-600 to-purple-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">Ready to Create Something Amazing?</h2>
+            <p class="text-xl text-purple-100 mb-8 max-w-3xl mx-auto">Join thousands of creators using Imagica AI to bring their ideas to life.</p>
+            <button class="px-8 py-4 bg-white text-purple-600 font-bold rounded-lg shadow-xl hover:bg-gray-100 transition transform hover:-translate-y-1">
+                Start Generating for Free
+                <i class="fas fa-arrow-right ml-3"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-md bg-purple-600 flex items-center justify-center">
+                            <i class="fas fa-magic text-white text-xl"></i>
+                        </div>
+                        <span class="ml-2 text-xl font-bold text-white">Imagica AI</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Transforming imagination into visual reality with cutting-edge AI technology.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/shaikhshahnawaz17/" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/shaikhshahnawaz17/" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.instagram.com/shaikhshahnawaz17/" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://www.instagram.com/shaikhshahnawaz17/" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase mb-4">Product</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">Features</a></li>
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">Pricing</a></li>
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">API</a></li>
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">Examples</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">Documentation</a></li>
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">Guides</a></li>
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">About</a></li>
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">Privacy</a></li>
+                        <li><a href="https://www.instagram.com/shaikhshahnawaz17/" class="hover:text-white transition">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-sm text-gray-500">
+                <p>© 2023 Imagica AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Image generation functionality (simulated)
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            const prompt = document.getElementById('prompt').value;
+            const style = document.getElementById('style').value;
+            const size = document.getElementById('size').value;
+            
+            if (!prompt) {
+                alert('Please enter a prompt to generate an image');
+                return;
+            }
+            
+            // Show loading animation
+            document.getElementById('image-placeholder').classList.add('hidden');
+            document.getElementById('loading-animation').classList.remove('hidden');
+            document.getElementById('generated-image-container').classList.add('hidden');
+            
+            // Simulate API call with setTimeout
+            setTimeout(function() {
+                // Based on user selections, generate different placeholder images
+                let imageUrl = '';
+                let dimensions = '600x400';
+                
+                // Set dimensions based on selected size
+                switch(size) {
+                    case 'square': dimensions = '512x512'; break;
+                    case 'landscape': dimensions = '1024x576'; break;
+                    case 'portrait': dimensions = '576x1024'; break;
+                    case 'hd': dimensions = '1920x1080'; break;
+                }
+                
+                // Set different placeholder images based on style (just for demo)
+                switch(style) {
+                    case 'realistic':
+                        imageUrl = `https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1466dc8a-b30f-4ff6-923d-b25d3c185631.png)}`;
+                        break;
+                    case 'anime':
+                        imageUrl = `https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fd9118b9-4f1d-4dfa-bec0-a805058f76e3.png)}`;
+                        break;
+                    case 'painting':
+                        imageUrl = `https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/068414f7-5b8d-4f50-88f9-c72d79c83721.png)}`;
+                        break;
+                    case '3d':
+                        imageUrl = `https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/567c74b0-0497-44ea-be65-b8a22fa50a6b.png)}`;
+                        break;
+                    case 'fantasy':
+                        imageUrl = `https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/40a25580-15a7-482a-8b11-3996276b4ead.png)}`;
+                        break;
+                    case 'cyberpunk':
+                        imageUrl = `https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/104dba42-38ef-49e4-bdca-8de648f91ed8.png)}`;
+                        break;
+                    default:
+                        imageUrl = `https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5ac856bb-e09d-4dae-9112-e87ffd47355b.png)}`;
+                }
+                
+                // Hide loading and show result
+                document.getElementById('loading-animation').classList.add('hidden');
+                document.getElementById('generated-image').src = imageUrl;
+                document.getElementById('generated-image').alt = prompt;
+                document.getElementById('generated-image-container').classList.remove('hidden');
+                
+            }, 3000); // Simulate 3 second processing time
+        });
+
+        // Regenerate button
+        document.getElementById('regenerate-btn').addEventListener('click', function() {
+            document.getElementById('generate-btn').click();
+        });
+
+        // Download button (simulated)
+        document.getElementById('download-btn').addEventListener('click', function() {
+            alert('In a real implementation, this would download your generated image. For this demo, right-click the image and select "Save Image As".');
+        });
+    </script>
+</body>
+</html>
